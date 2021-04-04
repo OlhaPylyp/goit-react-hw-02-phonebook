@@ -1,4 +1,4 @@
-const ContactItem = ({ contacts }) => (
+const ContactItem = ({ onDeleteContact, contacts }) => (
   <div>
     {" "}
     <ul>
@@ -7,10 +7,12 @@ const ContactItem = ({ contacts }) => (
           <li key={id}>
             {" "}
             <span>{name}:</span>
-            <span>{number}</span>{" "}
+            <span>{number}</span>{" "} 
+            <button type="submit"  onClick={() => onDeleteContact(id)}>Delete</button>
           </li>
         );
       })}
+     
     </ul>{" "}
   </div>
 );
