@@ -1,45 +1,48 @@
 import { Component } from "react";
-import './App.css';
+import "./App.css";
 import shortid from "shortid";
-import FormPhonebook from "./Components/PhoneBook"
-import ContactItem from "./Components/ContactItem"
-import Filter from "./Components/Filter"
+import FormPhonebook from "./Components/PhoneBook";
+import ContactItem from "./Components/ContactItem";
+import Filter from "./Components/Filter";
 
 class App extends Component {
   state = {
     contacts: [],
-    name: '',
-    filter:"",
-    number:""
-    
-  }
-  addContact=({name, number})=>{
-    console.log(this.state)
-    let contact={
+    filter: "",
+  };
+  addContact = ({ name, number }) => {
+    console.log(this.state);
+    let contact = {
       name,
-      number:number,
-      id:shortid.generate(),
-    }
-    this.setState((preState) => { return{
-      contacts:  [contact, ...preState.contacts]}
+      number: number,
+      id: shortid.generate(),
+    };
+    this.setState((preState) => {
+      return {
+        contacts: [contact, ...preState.contacts],
+      };
     });
-  
+  };
+  filterChange = (e) => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+  render() {
+    const { name, filter } = this.state;
+    const normalizedFilter = this.state.filter.toLowerCase();
+    const filterNamePhoneBook = this.state.contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+
+    return (
+      <div>
+        <h1>Phonebook</h1>
+        <FormPhonebook value={name} onSubmit={this.addContact} />
+        <h2>Contacts</h2>
+        <Filter value={filter} onChange={this.filterChange} />
+        <ContactItem contacts={filterNamePhoneBook} />
+      </div>
+    );
   }
-  filterChange=(e)=>{
-    this.setState({filter:e.currentTarget.value})
-  }
-    render() {
-   const {name}=this.state
-   
-  return (
-    <div>
-      <h1>Phonebook</h1>
-    <FormPhonebook value={name} onSubmit={this.addContact}/>
-   <ContactItem contacts={this.state.contacts}/>
-   <Filter value={this.state.filter} onChange={this.filterChange}/>
-  
-   </div> 
-  )}
 }
 
 export default App;

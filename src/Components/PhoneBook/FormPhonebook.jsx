@@ -3,20 +3,18 @@ import { Component } from "react";
 class FormPhonebook extends Component {
   state = {
     name: "",
-    number:"",  
+    number: "",
   };
   nameId = shortid.generate();
-  
 
   handleChange = (e) => {
-    const { name,number, value } = e.currentTarget;
+    const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
-    console.log([number])
   };
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit(this.state);
-     this.setState({ name: "", number:"" });
+    this.setState({ name: "", number: "" });
   };
 
   render() {
