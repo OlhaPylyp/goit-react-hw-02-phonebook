@@ -26,6 +26,12 @@ class App extends Component {
   filterChange = (e) => {
     this.setState({ filter: e.currentTarget.value });
   };
+  deleteContact=(id)=>{
+    console.log("id", id)
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
+  }
   render() {
     const { name, filter } = this.state;
     const normalizedFilter = this.state.filter.toLowerCase();
@@ -39,7 +45,7 @@ class App extends Component {
         <FormPhonebook value={name} onSubmit={this.addContact} />
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.filterChange} />
-        <ContactItem contacts={filterNamePhoneBook} />
+        <ContactItem  onDeleteContact={this.deleteContact}  contacts={filterNamePhoneBook} />
       </div>
     );
   }
