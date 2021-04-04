@@ -16,7 +16,7 @@ class FormPhonebook extends Component {
     e.preventDefault();
     this.props.onSubmit(this.state);
     this.setState({ name: "", number: "" });
-    console.log(this.props);
+    // console.log(this.props);
   };
 
   render() {

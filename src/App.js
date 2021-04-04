@@ -33,10 +33,11 @@ class App extends Component {
       };
     });
   };
-
+  
   filterChange = (e) => {
     this.setState({ filter: e.currentTarget.value });
   };
+
   deleteContact = (id) => {
     this.setState((prevState) => ({
       contacts: prevState.contacts.filter((contact) => contact.id !== id),

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import styles from '../Components/Section.module.css';
+import PropTypes from "prop-types";
+import styles from "../Components/Section.module.css";
 const Section = ({ title, children }) => (
   <section className={styles.container}>
     <h2 className={styles.title}>{title}</h2>
@@ -7,7 +7,7 @@ const Section = ({ title, children }) => (
   </section>
 );
 Section.defaultProps = {
-  title: '',
+  title: "",
 };
 Section.propTypes = {
   children: PropTypes.node.isRequired,
